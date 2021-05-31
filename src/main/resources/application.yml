@@ -1,0 +1,38 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: update
+    generate-ddl: true
+    cloud:
+      refresh:
+        enabled: false
+    servlet:
+      multipart:
+        max-file-size: 5MB
+        max-request-size: 5MB
+
+---
+
+server:
+  port: 8084
+
+spring:
+  profiles:
+      active: local
+
+datasource:
+  jdbc-url: jdbc:mysql://localhost/sucursal?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=America/Monterrey
+  username: root
+  password: hola1234
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  tomcat:
+    test-while-idle: true
+    validation-query: SELECT 1
+  initialization-mode: always
